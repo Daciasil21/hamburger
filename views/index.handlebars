@@ -1,0 +1,53 @@
+ <h2 id="menu">Delicious Menu</h2>
+<form class="create-update-form" action="/" method="POST">
+<h3 id = "newBurger">Add a Burger</h3>
+  <div class="form-group">
+    {{!-- <label for="ca">=</label> --}}
+    <input type="text" id="ca" name="name">
+  </div>
+  <button type="submit">Add Burger</button>
+</form>
+
+<ul id="rightside">
+  {{#each burger}}
+    {{#unless this.eaten}}
+      <li>
+        {{this.name}}
+
+        <form  action="/{{this.id}}?_method=PUT" method="POST">
+          <input type="hidden" name="eaten" value="true">
+          <button type="submit">Nom Nom!</button>
+        </form>
+      </li>
+    {{/unless}}
+  {{/each}}
+</ul>
+<div class ="container">
+
+
+ 
+  <h1 id="icomp-neon">Burgers</h1>
+  
+  <h2>Sold Out</h2>
+
+</div>
+
+
+<ul>
+  {{#each burger}}
+    {{#if this.eaten}}
+      <li>
+        {{this.name}}
+
+     {{!--    <form action="/{{this.id}}?_method=PUT" method="POST">
+          <input type="hidden" name="eaten" value="false">
+          <button type="submit">burrrger!</button>
+        </form> --}}
+
+        {{> burger/delete-burger}}
+      </li>
+    {{/if}}
+  {{/each}}
+</ul>
+
+
